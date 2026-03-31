@@ -1,0 +1,4 @@
+SYS_WRITE equ 0x01
+STDOUT equ 0x01
+
+SYS_END equ 0x3c

@@ -1,5 +1,7 @@
 %include "src/sys.inc"
 
+extern test_print
+
 section .data
     msg db "Hello, World!", 0x0a, 0
 
@@ -20,6 +22,8 @@ cnt_chr:
 cnt_chr_end:
 
     syscall
+
+    call test_print
 
     mov rax, SYS_END
     mov rdi, 0

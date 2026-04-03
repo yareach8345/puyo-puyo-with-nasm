@@ -1,6 +1,6 @@
 %include "src/inc/sys.inc"
 
-extern write
+extern con_write
 extern sock_open, sock_close, sock_connect, sock_send, sock_receive
 
 section .bss
@@ -36,7 +36,7 @@ _start:
     jne nerr
     
     mov rax, msg
-    call write
+    call con_write
 
     mov rax, SYS_END
     mov rdi, 1
@@ -54,7 +54,7 @@ nerr:
     jge nerr2
     
     mov rax, msg
-    call write
+    call con_write
 
     mov rax, SYS_END
     mov rdi, 2
@@ -71,7 +71,7 @@ nerr2:
     jne nerr3
     
     mov rax, msg
-    call write
+    call con_write
 
     mov rax, SYS_END
     mov rdi, 3
@@ -91,7 +91,7 @@ nerr3:
     jg nerr4
     
     mov rax, msg
-    call write
+    call con_write
 
     mov rax, SYS_END
     mov rdi, 4
@@ -102,7 +102,7 @@ nerr4:
     mov al, 0
     mov [rsp + 63], al
     mov rax, rsp
-    call write
+    call con_write
 
     add rsp, 64
 

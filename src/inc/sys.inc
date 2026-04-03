@@ -1,0 +1,16 @@
+; IO
+SYS_READ equ 0x0
+SYS_WRITE equ 0x01
+SYS_CLOSE equ 0x03
+
+STDOUT equ 0x01
+
+; System Exit
+SYS_END equ 0x3c
+
+; socket
+SYS_SOCK equ 0x29
+SYS_CONNECT equ 0x2A
+AF_UNIX equ 0x01
+
+SOCK_TYPE_SOCK_STREAM equ 0x01

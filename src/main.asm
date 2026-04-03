@@ -15,7 +15,7 @@ section .data
     xsock_addr_size equ $ - xsock_addr
 
     ; authファイルからトークンを取得するコードはまだ未作成
-    ; auth問題で失敗する場合、 'xhost +local' コマンドを実行
+    ; auth問題で失敗する場合、 'xhost +local:' コマンドを実行
     x11_req:
         db 'l', 0
         dw 11, 0

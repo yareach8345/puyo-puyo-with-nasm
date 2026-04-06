@@ -1,11 +1,14 @@
 %include "src/inc/sys.inc"
 
-; サブルーチン内のコメントは引数の使用例を示す。
-; 今後のドキュメント作成時参考するためのもの
-
 section .text
 global sock_open, sock_close, sock_connect, sock_send, sock_receive
 
+; ====================================================================
+; Function      : sock_open - Socket Open
+; Input         : none
+; Output        : RAX - fd(file descriptor) of generated socket, -1 on error
+; Destroys      : RAX, RDI, RSI, RDX
+; ====================================================================
 sock_open:
     mov rax, SYS_SOCK
     mov rdi, AF_UNIX
@@ -15,35 +18,59 @@ sock_open:
 
     ret
 
+; ====================================================================
+; Function      : sock_close - Socket Close
+; Input         : rdi - fd(file descriptor) of socket
+; Output        : none
+; Destroys      : RAX
+; ====================================================================
 sock_close:
     mov rax, SYS_CLOSE
     syscall
 
     ret
 
+; ====================================================================
+; Function      : sock_connect - Socket Connect
+; Input         :
+;       rdi - fd(file descriptor) of socket
+;       rsi - a address of sockaddr struct
+;       rdx - the size of sockaddr struct
+; Output        : RAX - 0 on success, -1 on error
+; Destroys      : RAX
+; ====================================================================
 sock_connect:
     mov rax, SYS_CONNECT
-    ; mov rdi, [sock_fd]
-    ; mov rsi, xsock_addr
-    ; mov rdx, xsock_addr_size
     syscall
 
     ret
 
+; ====================================================================
+; Function      : sock_send - Socket Send
+; Input         :
+;       rdi - fd(file descriptor) of socket
+;       rsi - a address of buffer
+;       rdx - byte count
+; Output        : RAX - The number of bytes written
+; Destroys      : RAX
+; ====================================================================
 sock_send:
     mov rax, SYS_WRITE
-    ; mov rdi, [sock_fd]
-    ; mov rsi, x11_req
-    ; mov rdx, x11_req_len
     syscall
 
     ret
 
+; ====================================================================
+; Function      : sock_receive - Socket Receive
+; Input         :
+;       rdi - fd(file descriptor) of socket
+;       rsi - a address of buffer
+;       rdx - byte count
+; Output        : RAX - number of bytes read, -1 on error
+; Destroys      : RAX
+; ====================================================================
 sock_receive:
     mov rax, SYS_READ
-    ; mov rdi, [sock_fd]
-    ; mov rsi, rsp
-    ; mov rdx, 40
     syscall
 
     ret
